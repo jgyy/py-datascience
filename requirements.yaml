@@ -1,0 +1,26 @@
+name: tensorflow
+dependencies:
+  - apple::tensorflow-deps
+  - black
+  - boto3
+  - flask
+  - h5py
+  - jupyter
+  - matplotlib
+  - pandas
+  - pandas-datareader
+  - pillow
+  - pip
+  - pylint
+  - python=3.8.12
+  - pyyaml
+  - requests
+  - scikit-learn
+  - scipy
+  - tqdm
+  - pip:
+      - bayesian-optimization
+      - gym
+      - kaggle
+      - tensorflow-macos
+      - tensorflow-metal
