@@ -3,7 +3,6 @@ Correlation Exercise
 """
 from os.path import dirname, realpath
 from json import dumps
-from numpy import corrcoef
 from pandas import DataFrame, read_excel, Series
 from matplotlib.pyplot import subplots, show
 
