@@ -2,7 +2,6 @@
 Cross Tables and Scatter Plots Exercise
 """
 from os.path import dirname, realpath
-from statistics import mode
 from pandas import DataFrame, read_excel
 
 PATH = dirname(realpath(__file__))
