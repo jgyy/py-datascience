@@ -42,16 +42,16 @@ def standard():
     substd = round(subtract.std(), 2).values[0]
     print(f"Subtract mean: mean={submean}, std={substd}")
 
-    standard = DataFrame(subtract.applymap(lambda x: x/substd)).rename(
+    standards = DataFrame(subtract.applymap(lambda x: x/substd)).rename(
         columns={"Subtract mean": "Standardized"}
     )
     figure("Standardized")
-    hist(standard)
+    hist(standards)
     xlabel("Data")
     ylabel("Frequency")
     grid(True)
-    standmean = round(standard.mean(), 2).values[0]
-    standstd = round(standard.std(), 2).values[0]
+    standmean = round(standards.mean(), 2).values[0]
+    standstd = round(standards.std(), 2).values[0]
     print(f"Standardized: mean={standmean}, std={standstd}")
 
 
