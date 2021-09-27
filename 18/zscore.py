@@ -9,7 +9,7 @@ from pandas import DataFrame, read_excel
 PATH = dirname(realpath(__file__))
 
 
-def standard():
+def zscore():
     """
     wrapper function
     """
@@ -51,4 +51,4 @@ def standard():
 
 
 if __name__ == "__main__":
-    standard()
+    zscore()
