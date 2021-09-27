@@ -28,7 +28,7 @@ def tscore():
     print(ttable)
     print(dataset)
 
-    zdata = {"df": len(dataset) - 1, "α": 0.005, "tscore": 0}
+    zdata = {"df": len(dataset) - 1, "α": 0.005}
     datainfo = {
         "Mean": round(dataset.mean().values[0], 0),
         "St. deviation": round(dataset.std().values[0], 0),
