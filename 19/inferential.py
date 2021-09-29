@@ -40,40 +40,7 @@ def inferential():
     women = DataFrame(sizes.iloc[4:21, 9:14].values, columns=sizes.iloc[3, 9:14].values)
     women.columns.name = "Female"
 
-    usa15 = confidence(aibundy, [2015], men, "United States", aibundy["Country"])
-    usa16 = confidence(aibundy, [2016], men, "United States", aibundy["Country"])
-    usa_num = 24
-    t23 = round(ttable.loc[usa_num - 1, round((1 - 0.95) / 2, 3)], 2)
-    print(f"United States: n = {usa_num}, t95%,23 = {t23}")
-    usa_res = {
-        "Mean": [
-            round((usa15.iloc[i, :].mean() + usa16.iloc[i, :].mean()) / 2, 2)
-            for i in range(len(men.index))
-        ],
-        "Standard error": [
-            round(
-                (usa15.iloc[i, :].std() + usa16.iloc[i, :].std()) / 2 / usa_num ** 0.5,
-                2,
-            )
-            for i in range(len(men.index))
-        ],
-    }
-    usa_res["Margin of error"] = [round(i * t23, 2) for i in usa_res["Standard error"]]
-    usa_res["CI low"] = [
-        i - j for i, j in zip(usa_res["Mean"], usa_res["Margin of error"])
-    ]
-    usa_res["CI high"] = [
-        i + j for i, j in zip(usa_res["Mean"], usa_res["Margin of error"])
-    ]
-    usa_res["math round"] = [round(i, 0) for i in usa_res["CI high"]]
-    usa_res["lesson"] = [4, 3, 3, 5, 8, 13, 23, 36, 26, 21, 12, 8, 6, 2, 4, 1, 0]
-    usa_res["Difference"] = [
-        i - j for i, j in zip(usa_res["lesson"], usa_res["math round"])
-    ]
-    usa_result = DataFrame(usa_res, columns=usa_res.keys(), index=men["US"])
-    usa_result.columns.name = "US"
-    usa_result.index.name = None
-    print(usa_result)
+    usa_tables(aibundy, men, ttable)
 
     ger1 = confidence(aibundy, [2014, 2015, 2016], women, "GER1", aibundy["Shop"])
     ger2 = confidence(aibundy, [2014, 2015, 2016], women, "GER2", aibundy["Shop"])
@@ -120,6 +87,46 @@ def inferential():
     ger_result.columns.name = "US"
     ger_result.index.name = None
     print(ger_result)
+
+
+def usa_tables(bundy, gender, table):
+    """
+    function to show list of usa tables
+    """
+    usa15 = confidence(bundy, [2015], gender, "United States", bundy["Country"])
+    usa16 = confidence(bundy, [2016], gender, "United States", bundy["Country"])
+    usa_num = 24
+    t23 = round(table.loc[usa_num - 1, round((1 - 0.95) / 2, 3)], 2)
+    print(f"United States: n = {usa_num}, t95%,23 = {t23}")
+    usa_res = {
+        "Mean": [
+            round((usa15.iloc[i, :].mean() + usa16.iloc[i, :].mean()) / 2, 2)
+            for i in range(len(gender.index))
+        ],
+        "Standard error": [
+            round(
+                (usa15.iloc[i, :].std() + usa16.iloc[i, :].std()) / 2 / usa_num ** 0.5,
+                2,
+            )
+            for i in range(len(gender.index))
+        ],
+    }
+    usa_res["Margin of error"] = [round(i * t23, 2) for i in usa_res["Standard error"]]
+    usa_res["CI low"] = [
+        i - j for i, j in zip(usa_res["Mean"], usa_res["Margin of error"])
+    ]
+    usa_res["CI high"] = [
+        i + j for i, j in zip(usa_res["Mean"], usa_res["Margin of error"])
+    ]
+    usa_res["math round"] = [round(i, 0) for i in usa_res["CI high"]]
+    usa_res["lesson"] = [4, 3, 3, 5, 8, 13, 23, 36, 26, 21, 12, 8, 6, 2, 4, 1, 0]
+    usa_res["Difference"] = [
+        i - j for i, j in zip(usa_res["lesson"], usa_res["math round"])
+    ]
+    usa_result = DataFrame(usa_res, columns=usa_res.keys(), index=gender["US"])
+    usa_result.columns.name = "US"
+    usa_result.index.name = None
+    print(usa_result)
 
 
 def confidence(data, year, gender, country, condition):
