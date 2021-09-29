@@ -28,7 +28,7 @@ def tscore():
     print(ttable)
     print(dataset)
 
-    zdata = {"df": len(dataset) - 1, "α": 0.005}
+    tdata = {"df": len(dataset) - 1, "α": 0.005}
     datainfo = {
         "Mean": round(dataset.mean().values[0], 0),
         "St. deviation": round(dataset.std().values[0], 0),
@@ -37,13 +37,13 @@ def tscore():
         + "We have a small sample. "
         + "We assume that the population is normally distributed. "
         + "The appropriate statistic to use is the t-statistic.",
-        "t-score": round(ttable.loc[zdata["df"], zdata["α"]], 2),
+        "t-score": round(ttable.loc[tdata["df"], tdata["α"]], 2),
         "T": 99,
         "CI low": round(
             dataset.mean().values[0]
             - (
                 dataset.std().values[0]
-                * ttable.loc[zdata["df"], zdata["α"]]
+                * ttable.loc[tdata["df"], tdata["α"]]
                 / sqrt(len(dataset))
             ),
             0,
@@ -52,7 +52,7 @@ def tscore():
             dataset.mean().values[0]
             + (
                 dataset.std().values[0]
-                * ttable.loc[zdata["df"], zdata["α"]]
+                * ttable.loc[tdata["df"], tdata["α"]]
                 / sqrt(len(dataset))
             ),
             0,
