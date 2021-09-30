@@ -11,8 +11,7 @@ def wrapper():
     print(True and not False and True or not False)
     print(True or False and False)
     print(False and True or False)
-    print(10 is not 12)
-    print(50 is 50)
+    print(10 != 12)
 
 
 if __name__ == "__main__":
