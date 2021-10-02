@@ -7,6 +7,7 @@ dependencies:
   - h5py
   - jupyter
   - matplotlib
+  - numpy
   - openpyxl
   - pandas
   - pandas-datareader
@@ -16,8 +17,11 @@ dependencies:
   - python=3.8.12
   - pyyaml
   - requests
+  - seaborn
   - scikit-learn
   - scipy
+  - scikit-learn
+  - statsmodels
   - tqdm
   - pip:
       - bayesian-optimization
