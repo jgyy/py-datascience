@@ -66,7 +66,6 @@ def wrapper():
     predictionsdf = DataFrame({"Predictions": predictions})
     joined = new_data.join(predictionsdf)
     joined.rename(index={0: "Bob", 1: "Alice"})
-    print(joined)
 
 
 if __name__ == "__main__":
