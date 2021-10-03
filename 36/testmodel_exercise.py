@@ -7,8 +7,10 @@ import seaborn as sns
 from scipy import stats
 from statsmodels.api import add_constant, Logit
 from pandas import DataFrame, read_csv
-from numpy import array, histogram2d, set_printoptions
+from numpy import array, histogram2d
 from matplotlib.pyplot import figure, scatter, xlabel, ylabel, show
+
+PATH = dirname(__file__)
 
 
 def wrapper1():
@@ -18,8 +20,7 @@ def wrapper1():
     filterwarnings("ignore", category=RuntimeWarning)
     sns.set()
     stats.chisqprob = stats.chi2.sf
-    path = dirname(__file__)
-    raw_data = DataFrame(read_csv(f"{path}\\bank_data.csv"))
+    raw_data = DataFrame(read_csv(f"{PATH}\\bank_data.csv"))
     print(raw_data)
 
     data = raw_data.copy()
@@ -47,7 +48,14 @@ def wrapper1():
     results_logit.summary2()
     print(confusion_matrix(x_all, y_data, results_logit))
 
-    raw_data2 = DataFrame(read_csv(f"{path}\\bank_data_testing.csv"))
+    wrapper2(estimators, x_all, y_data, results_logit)
+
+
+def wrapper2(estimators, x_all, y_data, results_logit):
+    """
+    wrapper function part 2
+    """
+    raw_data2 = DataFrame(read_csv(f"{PATH}\\bank_data_testing.csv"))
     data_test = raw_data2.copy()
     data_test = data_test.drop(["Unnamed: 0"], axis=1)
     data_test["y"] = data_test["y"].map({"yes": 1, "no": 0})
